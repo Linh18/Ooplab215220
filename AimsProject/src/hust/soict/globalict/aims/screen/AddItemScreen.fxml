@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="360.0" style="-fx-background-color: silver;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: gray;" text="Item" textFill="#08ff00">
+         <font>
+            <Font name="Serif Bold" size="36.0" />
+         </font>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="20.0">
+         <children>
+            <RadioButton fx:id="rbtnBook" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addBookSelected" selected="true" text="Book">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="typeSelection" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addDVDSelected" text="DVD" toggleGroup="$typeSelection">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton layoutX="96.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addCDSelected" text="CD" toggleGroup="$typeSelection">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </RadioButton>
+         </children>
+         <VBox.margin>
+            <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+         </VBox.margin>
+      </HBox>
+      <TextField fx:id="tfTitle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Title">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+         </VBox.margin>
+      </TextField>
+      <TextField fx:id="tfCategory" layoutX="22.0" layoutY="102.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Category">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+         </VBox.margin>
+      </TextField>
+      <TextField fx:id="tfCost" layoutX="10.0" layoutY="173.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Cost">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+         </VBox.margin>
+      </TextField>
+      <StackPane prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <VBox fx:id="extendBook" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <TextField fx:id="tfBookAuthor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Authors (separated by &quot;, &quot;)">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button fx:id="btnAddBook" mnemonicParsing="false" onAction="#btnAddBookPressed" style="-fx-background-color: navy;" text="Confirm" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="extendDVD" alignment="CENTER" disable="true" prefHeight="200.0" prefWidth="100.0" visible="false">
+               <children>
+                  <TextField fx:id="tfDirector" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Director">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="tfLength" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Lenght">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button fx:id="btnAddDVD" defaultButton="true" mnemonicParsing="false" onAction="#btnAddDVDPressed" style="-fx-background-color: navy;" text="Confirm" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="extendCD" alignment="TOP_CENTER" disable="true" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" visible="false">
+               <children>
+                  <TextField fx:id="tfDirectorCD" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Artist">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button fx:id="btnAddCD" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#btnAddCDPressed" style="-fx-background-color: navy;" text="Confirm" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
+</VBox>

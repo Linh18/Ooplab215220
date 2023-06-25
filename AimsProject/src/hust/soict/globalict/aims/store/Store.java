@@ -1,85 +1,52 @@
 package hust.soict.globalict.aims.store;
+import java.util.ArrayList;
 
-import hust.soict.globalict.aims.disc.DigitalVideoDisc;
+import javax.swing.JOptionPane;
+
+import hust.soict.globalict.aims.media.Media;
 
 public class Store {
-	public static final int MAX_NUMBER_IN_STORE=20;
-	private int qtyInStore;
-	private DigitalVideoDisc itemInStore[]=
-	       new DigitalVideoDisc[MAX_NUMBER_IN_STORE];
-	public Store() {
-		this.qtyInStore = 0;
-	}
+    private static int MAX_NUMBER_ITEMS_IN_STORE = 1000000;
+    private ArrayList<Media> itemsInStore = new ArrayList<Media>();     
+    private int numberOfItemsInStore = 0;
+    
+    public Media findByTitle(String title) {
+        for(Media item : itemsInStore)
+            if (item.getTitle().equals(title))
+                return item;
+        return null;
+    }
 
-	public int getQtyInStore() {
-		return qtyInStore;
-	}
+    public ArrayList<Media> getItemsInStore() {
+        return itemsInStore;
+    }
+    public int getNumberOfItemsInStore() {
+        return numberOfItemsInStore;
+    }
+    
+    //Add a new dvd into store
+    public void addItem(Media item)
+    {
+        if(numberOfItemsInStore == MAX_NUMBER_ITEMS_IN_STORE){
+            JOptionPane.showMessageDialog(null, "Store is full", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        
+        } else if (itemsInStore.contains(item)) {
+            JOptionPane.showMessageDialog(null, "This item is existed in store", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            itemsInStore.add(item);
+            numberOfItemsInStore++;
+        }
+    }
 
-	public void setQtyInStore(int qtyInStore) {
-		this.qtyInStore = qtyInStore;
-	}
-	public boolean duplicated_Title(DigitalVideoDisc disc) {
-		for(int i=0;i<qtyInStore;i++)
-		{
-			if(disc.getTitle().equals(itemInStore[i].getTitle())) {
-				return true;
-			}
-		}
-		return false;
-	}
-	public void addDVD(DigitalVideoDisc disc) {
-	     if(qtyInStore==MAX_NUMBER_IN_STORE) {
-	    	 System.out.println("The store is full");
-			
-		}else{
-			  if(!duplicated_Title(disc)) {
-			  itemInStore[qtyInStore]=disc;
-			  qtyInStore++;
-			  System.out.println("The dvd number "+qtyInStore+" has been added to store successfully.!!");
-		}
-			}
-	}
-	public void removeDVD(DigitalVideoDisc disc) {
-		int check=-1;
-		if(qtyInStore==0) {
-			System.out.println("The store is empty");
-		}else {
-			if(!(duplicated_Title(disc))) {
-				System.out.println("The DVD has not been the store");
-			}else {
-			
-			for(int i=0;i<qtyInStore;i++) {
-				if(itemInStore[i].getTitle().equals(disc.getTitle())) {
-					check=i;
-					break;
-				}
-			}
-
-			}
-		}
-		if(check!=-1) {
-			qtyInStore--;
-			for(int i=check;i<qtyInStore;i++) {
-				itemInStore[i]=itemInStore[i+1];
-			}
-			System.out.println("The dvd has been removed from the store.!!");
-		}
-	}
-	public void display(){
-		System.out.println("***************Store*******************");
-		System.out.println("Store Items:");
-	    if (qtyInStore == 0){
-	        System.out.println("Out of Stock!");
-	    }
-	    else{
-	        for (int i = 0; i < qtyInStore; i++){
-	            System.out.println(i+1+".DVD - " + itemInStore[i].getTitle() + 
-	            		" - " + itemInStore[i].getCategory() +
-	            		" - " + itemInStore[i].getDirector() +
-	            		" - " + itemInStore[i].getLength() +
-	            		": " + itemInStore[i].getCost()+"$" );
-	        }
-	    }
-	    System.out.println( "**************************************");
-	}
+    //Remove a disc from store (remove object has the same address to dvd not the same properties to dvd)
+    public void removeItem(Media item){
+        boolean changed = false;
+        if(itemsInStore.contains(item)) {
+            itemsInStore.remove(item);
+            numberOfItemsInStore--;
+            changed = true;
+        }
+        if (!changed)
+            JOptionPane.showMessageDialog(null, "No item was remove!", "Notice", JOptionPane.INFORMATION_MESSAGE);        
+    }
 }
